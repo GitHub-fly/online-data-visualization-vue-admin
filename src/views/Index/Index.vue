@@ -5,7 +5,8 @@
  * @Date: 2021-05-18 21:29:26
 -->
 <template>
-    <div>
+    <div style="height: 100%">
+        <!-- 顶部 -->
         <v-app-bar style="z-index: 10" color="#3949ab" dark>
             <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
             <v-icon large color="#fafafa"> mdi-domain </v-icon>
@@ -17,7 +18,7 @@
             <v-avatar size="36">
                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
             </v-avatar>
-            
+
             <v-btn icon>
                 <v-icon>mdi-heart</v-icon>
             </v-btn>
@@ -45,9 +46,10 @@
             <!-- -->
         </v-app-bar>
 
+        <!-- 侧边栏 -->
         <v-navigation-drawer app style="padding-top: 60px">
             <v-card height="100%" class="mx-auto" width="300">
-                <v-list height="100%" color="#81c784">
+                <v-list height="100%" color="#66bb6a">
                     <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>
                         <template v-slot:activator>
                             <v-list-item-content>
@@ -65,12 +67,12 @@
             <!-- -->
         </v-navigation-drawer>
 
-        <!-- 根据应用组件来调整你的内容 -->
-        <v-main>
+        <!-- 主题部分 -->
+        <v-main style="height: 91%">
             <!-- 给应用提供合适的间距 -->
-            <v-container fluid>
+            <v-container style="height: 100%" fluid>
                 <!-- 如果使用 vue-router -->
-                <router-view style="height:: 100%" />
+                <router-view style="height: 100%" />
             </v-container>
         </v-main>
     </div>
@@ -79,7 +81,6 @@
 <script>
 export default {
     name: 'Index',
-
     data: () => ({
         items: [
             {
