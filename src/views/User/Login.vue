@@ -6,18 +6,18 @@
 -->
 <template>
     <div class="d-flex justify-center align-center bg-div">
-        <div class="form-div">
+        <div class="form-div pa-2">
             <v-form ref="form" v-model="valid" lazy-validation>
-                <v-text-field color="" v-model="account" :counter="10" :rules="accountRules" label="账号" required></v-text-field>
+                <v-text-field v-model="account" :counter="10" :rules="accountRules" label="账号" required dark></v-text-field>
 
-                <v-text-field v-model="password" type="password" :rules="passwordRules" label="密码" required></v-text-field>
+                <v-text-field v-model="password" type="password" :rules="passwordRules" label="密码" required dark></v-text-field>
 
-                <v-checkbox style="width: 40%" v-model="checkbox" label="记住密码"></v-checkbox>
+                <v-checkbox style="width: 40%" v-model="checkbox" label="记住密码" dark></v-checkbox>
 
-                <v-row class="px-1 mt-6" justify="space-between">
-                    <v-btn width="100" :disabled="!valid" color="success" class="mr-4" @click="validate"> 登录 </v-btn>
+                <v-row no-gutters class="px-2 mt-6" justify="space-between">
+                    <v-btn width="100" :disabled="!valid" color="success" @click="validate"> 登录 </v-btn>
 
-                    <v-btn width="100" color="warning" class="mr-4" @click="reset"> 注册 </v-btn>
+                    <v-btn width="100" color="warning" @click="reset"> 注册 </v-btn>
                 </v-row>
             </v-form>
         </div>
@@ -25,21 +25,45 @@
 </template>
 
 <script>
+import { userLogin } from '../../common/api/userapi.js'
 export default {
     name: 'Login',
     data: () => ({
         valid: true,
-        account: '',
+        account: '123123',
         accountRules: [(v) => !!v || '请输入账号'],
-        password: '',
+        password: '12312s3',
         passwordRules: [(v) => !!v || '请输入密码', (v) => (v && v.length >= 6) || '密码至少6位'],
         checkbox: false,
     }),
     methods: {
         validate() {
             this.$refs.form.validate()
-            this.$router.push({
-                path: '/index',
+            let alertObj = {}
+            userLogin({ account: this.account, password: this.password }).then((res) => {
+                console.log(res)
+                if (res.code == 1) {
+                    alertObj = {
+                        type: 'success',
+                        content: '登录成功',
+                    }
+                    setTimeout(() => {
+                        this.$router.push({
+                            path: '/index',
+                        })
+                    }, 1000)
+                } else if (res.code == 20009) {
+                    alertObj = {
+                        type: 'error',
+                        content: '用户不存在',
+                    }
+                } else if (res.code == 20002) {
+                    alertObj = {
+                        type: 'error',
+                        content: '密码错误',
+                    }
+                }
+                this.GLOBAL.pushAlertArrObj(alertObj)
             })
         },
         reset() {
@@ -61,7 +85,8 @@ export default {
     overflow: overlay;
 }
 .form-div {
-    height: 40%;
-    width: 20%;
+    width: 23%;
+    border-radius: 10px;
+    // background-color: #fff;
 }
 </style>

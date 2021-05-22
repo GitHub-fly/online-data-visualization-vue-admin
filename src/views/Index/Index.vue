@@ -94,10 +94,7 @@ export default {
             },
             {
                 action: 'mdi-silverware-fork-knife',
-                items: [
-                    { title: '用户信息', path: 'userDataInfo' },
-                    { title: '修改数据源接入类型', path: 'dataType' },
-                ],
+                items: [{ title: '修改数据源接入类型', path: 'dataType' }],
                 title: '系统权限',
             },
             {
