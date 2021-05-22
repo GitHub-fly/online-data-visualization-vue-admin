@@ -9,12 +9,12 @@ import axios from 'axios'
 // 创建一个 axios 的对象
 const instance = axios.create({
     // BASURL 会在发送请求的时候拼接在url参数前面
-    // baseURL: "http://127.0.0.1:5000",
-    baseURL: 'http://112.126.61.191:5000',
+    baseURL: "http://127.0.0.1:5555/sys",
+    // baseURL: 'http://112.126.61.191:5000',
     // timeout: 10000,
     responseType: 'json',
     headers: {
-        'Content-Type': 'application/json;charse',
+        'Content-Type': 'application/json;',
     },
 })
 
@@ -67,14 +67,14 @@ instance.interceptors.response.use(
     }
 )
 
-export async function get(url, params) {
+export async function get (url, params) {
     return await instance.get(url, params)
 }
 
-export async function post(url, params) {
+export async function post (url, params) {
     return await instance.post(url, params)
 }
 
-export async function put(url, params) {
+export async function put (url, params) {
     return await instance.put(url, params)
 }

@@ -6,11 +6,20 @@
 -->
 <template>
     <v-app>
+        <AlertDialog></AlertDialog>
         <router-view style="height: 100%" />
     </v-app>
 </template>
 
-<script></script>
+<script>
+import AlertDialog from './components/AlertDialog'
+
+export default {
+    components: {
+        AlertDialog,
+    },
+}
+</script>
 
 <style lang="scss">
 /* 所有文字都不允许被选择 */
