@@ -7,8 +7,7 @@
 <template>
     <div style="height: 100%">
         <!-- 顶部 -->
-        <v-app-bar style="z-index: 10" color="#3949ab" dark>
-            <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+        <v-app-bar style="z-index: 10" color="#81d4fa" dark>
             <v-icon large color="#fafafa"> mdi-domain </v-icon>
 
             <v-toolbar-title class="ml-8">后台管理</v-toolbar-title>
@@ -36,10 +35,14 @@
 
                 <v-list>
                     <v-list-item>
-                        <v-list-item-title>退出</v-list-item-title>
+                        <v-list-item-title>
+                            <router-link to="/"> 退出</router-link>
+                        </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
-                        <v-list-item-title>个人信息</v-list-item-title>
+                        <v-list-item-title>
+                            <router-link to="updateUser">个人信息</router-link>
+                        </v-list-item-title>
                     </v-list-item>
                 </v-list>
             </v-menu>
@@ -49,7 +52,7 @@
         <!-- 侧边栏 -->
         <v-navigation-drawer app style="padding-top: 60px">
             <v-card height="100%" class="mx-auto" width="300">
-                <v-list height="100%" color="#66bb6a">
+                <v-list height="100%" color="#b3e5fc">
                     <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>
                         <template v-slot:activator>
                             <v-list-item-content>
