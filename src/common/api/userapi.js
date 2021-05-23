@@ -18,3 +18,19 @@ export async function addAdmin (obj) {
 export async function updateInfo (obj) {
     return await post("/updateInfo", obj)
 }
+export async function getUserBehavior (obj) {
+    return await post("/getUserBehavior", obj)
+
+}
+export async function orderByFileNumber (obj) {
+    return await post("/orderByFileNumber", obj)
+
+}
+export async function orderByConnNumber (obj) {
+    return await post("/orderByConnNumber", obj)
+
+}
+
+
+
+
