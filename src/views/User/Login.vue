@@ -14,10 +14,8 @@
 
                 <v-checkbox style="width: 40%" v-model="checkbox" label="记住密码" dark></v-checkbox>
 
-                <v-row no-gutters class="px-2 mt-6" justify="space-between">
-                    <v-btn width="100" :disabled="!valid" color="success" @click="validate"> 登录 </v-btn>
-
-                    <v-btn width="100" color="warning" @click="reset"> 注册 </v-btn>
+                <v-row no-gutters class="px-2 mt-6" justify="center">
+                    <v-btn width="400" :disabled="!valid" color="success" @click="validate"> 登录 </v-btn>
                 </v-row>
             </v-form>
         </div>
@@ -35,7 +33,9 @@ export default {
         password: '123123',
         passwordRules: [(v) => !!v || '请输入密码', (v) => (v && v.length >= 6) || '密码至少6位'],
         checkbox: false,
+        user: {},
     }),
+    created() {},
     methods: {
         validate() {
             this.$refs.form.validate()
@@ -43,6 +43,8 @@ export default {
             userLogin({ account: this.account, password: this.password }).then((res) => {
                 console.log(res)
                 if (res.code == 1) {
+                    this.$store.state.userInfo = res.data
+                    console.log(this.$store.state.userInfo)
                     alertObj = {
                         type: 'success',
                         content: '登录成功',
