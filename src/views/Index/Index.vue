@@ -15,7 +15,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-avatar size="36">
+            <v-avatar class="mr-3" size="36">
                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
             </v-avatar>
 
@@ -47,7 +47,7 @@
         </v-app-bar>
 
         <!-- 侧边栏 -->
-        <v-navigation-drawer app style="padding-top: 60px">
+        <v-navigation-drawer app style="padding-top: 60px" width="230">
             <v-card height="100%" class="mx-auto" width="300">
                 <v-list height="100%" color="#66bb6a">
                     <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>

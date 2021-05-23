@@ -32,7 +32,7 @@ export default {
         valid: true,
         account: '123123',
         accountRules: [(v) => !!v || '请输入账号'],
-        password: '12312s3',
+        password: '123123',
         passwordRules: [(v) => !!v || '请输入密码', (v) => (v && v.length >= 6) || '密码至少6位'],
         checkbox: false,
     }),
