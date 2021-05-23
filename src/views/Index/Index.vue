@@ -50,7 +50,7 @@
         </v-app-bar>
 
         <!-- 侧边栏 -->
-        <v-navigation-drawer app style="padding-top: 60px" width="230">
+        <v-navigation-drawer app style="padding-top: 60px" width="235">
             <v-card height="100%" class="mx-auto" width="300">
                 <v-list height="100%" color="#b3e5fc">
                     <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>

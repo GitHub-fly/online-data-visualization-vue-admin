@@ -20,7 +20,6 @@ const routes = [
     },
     {
         path: '/index',
-        name: 'Index',
         component: Index,
         children: [
             {
@@ -48,22 +47,17 @@ const routes = [
                 component: () => import('../views/System/UserDataInfo.vue')
             },
             {
-                path: 'userDataInfo',
-                name: 'UserDataInfo',
-                component: () => import('../views/System/UserDataInfo.vue')
-            },
-            {
                 path: 'dataIndex',
                 name: 'DataIndex',
                 component: () => import('../views/Data/DataIndex.vue')
             }
         ]
     },
-    {
-        path: '/addAdmin',
-        name: 'AddAdmin',
-        component: () => import('../views/User/AddAdmin.vue'),
-    },
+    // {
+    //     path: '/addAdmin',
+    //     name: 'AddAdmin',
+    //     component: () => import('../views/User/AddAdmin.vue'),
+    // },
 
 ]
 

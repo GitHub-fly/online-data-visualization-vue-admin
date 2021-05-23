@@ -1,5 +1,5 @@
 /*
- * @Description:
+ * @Description:    系统权限模块接口
  * @Author: xunmi
  * @Version: 1.0
  * @Date: 2021-05-22 17:56:51
