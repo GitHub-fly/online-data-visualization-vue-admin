@@ -16,7 +16,7 @@ export async function addAdmin (obj) {
     return await post("/addAdmin", obj)
 }
 export async function updateInfo (obj) {
-    return await post("/updateInfo", obj)
+    return await post("/updateUserInfo", obj)
 }
 export async function getUserBehavior (obj) {
     return await post("/getUserBehavior", obj)
