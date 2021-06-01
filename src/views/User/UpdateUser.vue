@@ -8,10 +8,28 @@
     <v-card class="d-flex flex-column">
         <v-card width="100%" height="80%" class="d-flex">
             <v-card width="20%" height="100%" class="d-flex flex-column align-center" tile elevation="0">
-                <v-card height="140" width="140" class="mt-10">
-                    <v-img src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg" width="100%" height="100%"></v-img>
-                </v-card>
-                <v-btn color="#006064" style="color: #ffffff" class="mt-3">修改头像</v-btn>
+                <v-hover>
+                    <template v-slot:default="{ hover }">
+                        <v-card class="avatar" max-width="200" max-height="200">
+                            <img style="height: 200px; width: 200px" class="br-1" :src="userInfo.avatar" />
+                            <v-fade-transition>
+                                <v-overlay v-if="hover" absolute color="#f5f5f5">
+                                    <v-btn @click="avatarClick()"
+                                        >修改头像
+                                        <input
+                                            type="file"
+                                            @change="uploadAvatar($event)"
+                                            ref="file"
+                                            style="display: none"
+                                            id="file"
+                                            accept="image/jpg, image/jpeg, image/png"
+                                        />
+                                    </v-btn>
+                                </v-overlay>
+                            </v-fade-transition>
+                        </v-card>
+                    </template>
+                </v-hover>
             </v-card>
             <v-card width="80%" height="100%" tile elevation="0" class="d-flex flex-column justify-space-around">
                 <v-card
@@ -99,6 +117,31 @@
 </template>
 
 <script>
+const clickoutside = {
+    // 初始化指令
+    bind(el, binding) {
+        function documentHandler(e) {
+            // 这里判断点击的元素是否是本身，是本身，则返回
+            if (el.contains(e.target)) {
+                return false
+            }
+            // 判断指令中是否绑定了函数
+            if (binding.expression) {
+                // 如果绑定了函数 则调用那个函数，此处binding.value就是handleClose方法
+                binding.value(e)
+            }
+        }
+        // 给当前元素绑定个私有变量，方便在unbind中可以解除事件监听
+        el.__vueClickOutside__ = documentHandler
+        document.addEventListener('click', documentHandler)
+    },
+    update() {},
+    unbind(el) {
+        // 解除事件监听
+        document.removeEventListener('click', el.__vueClickOutside__)
+        delete el.__vueClickOutside__
+    },
+}
 import { updateInfo } from '../../common/api/userapi'
 export default {
     name: 'UpdateUser',
@@ -109,6 +152,8 @@ export default {
     created() {
         this.userInfo = this.$store.state.userInfo
     },
+    //注册指令
+    directives: { clickoutside },
     methods: {
         updateUserInfo() {
             let alertObj = {}
@@ -125,6 +170,27 @@ export default {
                     }
                 }
                 this.GLOBAL.pushAlertArrObj(alertObj)
+            })
+        },
+        avatarClick() {
+            this.$refs.file.click()
+        },
+        uploadAvatar(event) {
+            const OSS = require('ali-oss')
+            let client = new OSS({
+                region: 'oss-cn-hangzhou',
+                accessKeyId: 'LTAI4G4j1GuS21gFVBoM4Njf',
+                accessKeySecret: 'Ws0Vnbtwz1Q5fVCCbseZJ6eSEiBG3X',
+                bucket: 'xunmimi',
+            })
+            let timestamp = Date.parse(new Date())
+            let imgUrl = 'img/' + timestamp + '.' + 'jpeg'
+            var file = event.target.files[0] //获取文件流
+            var _this = this
+            client.multipartUpload(imgUrl, file).then(function (result) {
+                let index = result.res.requestUrls[0].indexOf('?')
+                let url = result.res.requestUrls[0].slice(0, index)
+                _this.userInfo.avatar = url
             })
         },
         prev() {
