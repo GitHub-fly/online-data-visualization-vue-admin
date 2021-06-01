@@ -5,7 +5,7 @@
  * @Date: 2021-05-18 21:34:52
 -->
 <template>
-    <div ref="parentDiv" style="position: relitive" class="d-flex flex-column align-center justify-center">
+    <div ref="parentDiv" style="position: relitive" class="d-flex flex-column align-center justify-center pt-6">
         <v-card width="100%" height="60" class="d-flex align-center" tile elevation="0">
             <v-btn @click="IsAddAdmin = true" color="#00838f" style="color: #ffffff">新增管理员</v-btn>
         </v-card>

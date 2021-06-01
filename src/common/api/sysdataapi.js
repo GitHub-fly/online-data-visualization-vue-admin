@@ -9,3 +9,7 @@ import { post } from '../request'
 export async function countNumber () {
     return await post('/countNumber')
 }
+
+export async function handleApiNum () {
+    return await post('/apiCount')
+}

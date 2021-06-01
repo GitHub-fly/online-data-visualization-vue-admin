@@ -7,7 +7,7 @@
 <template>
     <div style="height: 100%">
         <!-- 顶部 -->
-        <v-app-bar style="z-index: 10" color="#81d4fa" dark>
+        <v-app-bar style="z-index: 10; position: fixed" color="#81d4fa" dark>
             <v-icon large color="#fafafa"> mdi-domain </v-icon>
 
             <v-toolbar-title class="ml-8">后台管理</v-toolbar-title>
@@ -49,35 +49,37 @@
             <!-- -->
         </v-app-bar>
 
-        <!-- 侧边栏 -->
-        <v-navigation-drawer app style="padding-top: 60px" width="235">
-            <v-card height="100%" class="mx-auto" width="300">
-                <v-list height="100%" color="#b3e5fc">
-                    <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>
-                        <template v-slot:activator>
-                            <v-list-item-content>
-                                <v-list-item-title v-text="item.title"></v-list-item-title>
-                            </v-list-item-content>
-                        </template>
-                        <v-list-item ripple v-cursor v-for="child in item.items" :key="child.title" :to="child.path">
-                            <v-list-item-content>
-                                <v-list-item-title v-text="child.title"></v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list-group>
-                </v-list>
-            </v-card>
-            <!-- -->
-        </v-navigation-drawer>
+        <div class="d-flex pt-16" style="height: 100%">
+            <!-- 侧边栏 -->
+            <v-navigation-drawer style="height: 100%; position: fixed" width="235" class="pt-14">
+                <v-card height="100%" class="mx-auto" width="300">
+                    <v-list height="100%" color="#b3e5fc">
+                        <v-list-group v-for="item in items" :key="item.title" v-model="item.active" :prepend-icon="item.action" no-action>
+                            <template v-slot:activator>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                            <v-list-item ripple v-cursor v-for="child in item.items" :key="child.title" :to="child.path">
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="child.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list-group>
+                    </v-list>
+                </v-card>
+                <!-- -->
+            </v-navigation-drawer>
 
-        <!-- 主题部分 -->
-        <v-main style="height: 91%">
-            <!-- 给应用提供合适的间距 -->
-            <v-container style="height: 100%" fluid>
-                <!-- 如果使用 vue-router -->
-                <router-view style="height: 100%" />
-            </v-container>
-        </v-main>
+            <!-- 主题部分 -->
+            <v-main style="height: 91%; padding-left: 235px">
+                <!-- 给应用提供合适的间距 -->
+                <v-container style="height: 100%" fluid>
+                    <!-- 如果使用 vue-router -->
+                    <router-view style="height: 100%" />
+                </v-container>
+            </v-main>
+        </div>
     </div>
 </template>
 

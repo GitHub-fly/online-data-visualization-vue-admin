@@ -15,5 +15,5 @@ export async function addOne (obj) {
 }
 
 export async function updateInfo (obj) {
-    return await post('/updateInfo', obj)
+    return await post('/updateDataTypeInfo', obj)
 }

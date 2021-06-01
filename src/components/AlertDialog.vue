@@ -10,7 +10,6 @@
         <div class="d-flex flex-column align-center" style="width: 100%">
             <v-alert
                 width="500"
-                class="div-alert"
                 style="z-index: 1000"
                 v-ripple
                 v-for="(item, index) in alertArr"
