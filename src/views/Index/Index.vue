@@ -15,7 +15,7 @@
             <v-spacer></v-spacer>
 
             <v-avatar class="mr-3" size="36">
-                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                <img :src="this.userInfo.avatar" alt="John" />
             </v-avatar>
 
             <v-btn icon>
@@ -87,6 +87,7 @@
 export default {
     name: 'Index',
     data: () => ({
+        userInfo: {},
         items: [
             {
                 action: 'mdi-ticket',
@@ -109,6 +110,9 @@ export default {
             },
         ],
     }),
+    created() {
+        this.userInfo = this.$store.state.userInfo
+    },
 }
 </script>
 
