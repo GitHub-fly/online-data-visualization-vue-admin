@@ -9,8 +9,8 @@ import axios from 'axios'
 // 创建一个 axios 的对象
 const instance = axios.create({
     // BASURL 会在发送请求的时候拼接在url参数前面
-    baseURL: "http://127.0.0.1:5555/sys",
-    // baseURL: 'http://112.126.61.191:5000',
+    // baseURL: "http://127.0.0.1:5555/sys",
+    baseURL: 'http://47.106.128.152:5555/sys',
     // timeout: 10000,
     responseType: 'json',
     headers: {

@@ -12,7 +12,7 @@ module.exports = {
         open: true,
         hotOnly: true,
     },
-    outputDir: './dist',
+    outputDir: './dist_admin',
     assetsDir: './assets/',
     publicPath: './',
     indexPath: './index.html',
